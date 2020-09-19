@@ -7,10 +7,9 @@ include_once 'functions.inc.php';
 include_once 'commonFunctions.inc.php';
 
 
-//$pluginName = "Weather";
 $pluginName = basename(dirname(__FILE__));  //pjd 7-14-2019   added per dkulp
 
-$gitURL = "https://github.com/LightsOnHudson/FPP-Plugin-Weather.git";
+$gitURL = "https://github.com/FalconChristmas/FPP-Plugin-Weather.git";
 
 
 $pluginUpdateFile = $settings['pluginDirectory']."/".$pluginName."/"."pluginUpdate.inc";
@@ -38,8 +37,11 @@ if(isset($_POST['submit']))
 	
 	//WriteSettingToFile("ENABLED",urlencode($_POST["ENABLED"]),$pluginName);
 	WriteSettingToFile("SEPARATOR",urlencode($_POST["SEPARATOR"]),$pluginName);
+	
+	//**********possibly change to Latitude and Longitude for global compatibility?
 	WriteSettingToFile("CITY",urlencode($_POST["CITY"]),$pluginName);
 	WriteSettingToFile("STATE",urlencode($_POST["STATE"]),$pluginName);
+	//*****************************************************************************
 	
 	WriteSettingToFile("LAST_READ",urlencode($_POST["LAST_READ"]),$pluginName);
 	WriteSettingToFile("API_KEY",urlencode($_POST["API_KEY"]),$pluginName);
@@ -57,8 +59,12 @@ if(isset($_POST['submit']))
 	$ENABLED = urldecode($pluginSettings['ENABLED']);
 	
 	$SEPARATOR = urldecode($pluginSettings['SEPARATOR']);
+
+	//**********possibly change to Latitude and Longitude for global compatibility?
 	$CITY=  urldecode($pluginSettings['CITY']);
 	$STATE=  urldecode($pluginSettings['STATE']);
+	//*****************************************************************************
+
 	$API_KEY = urldecode($pluginSettings['API_KEY']);
 	
 	$INCLUDE_WIND = urldecode($pluginSettings['INCLUDE_WIND']);
@@ -75,8 +81,7 @@ if(isset($_POST['submit']))
 	if($SEPARATOR == "" || strlen($SEPARATOR)>1) {
 		$SEPARATOR="|";
 	}
-	//echo "sports read: ".$SPORTS."<br/> \n";
-	
+		
 	if((int)$LAST_READ == 0 || $LAST_READ == "") {
 		$LAST_READ=0;
 		
@@ -99,7 +104,9 @@ if(isset($_POST['submit']))
 
 <p>Configuration:
 <ul>
+<!--*****************************change to Lat & Long ************-->
 <li>Configure your City & 2 Character State & Separator Character to display</li>
+<!--*****************************change to Lat & Long ************-->	
 <li>Visit http://home.openweathermap.org/ to sign up for an API KEY</li>
 </ul>
 <ul>
